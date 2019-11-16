@@ -387,7 +387,7 @@ endfunction
 function! s:CheckForExCtags(silent) abort
     call tagbar#debug#log('Checking for Exuberant Ctags')
 
-    if has('ivim')
+    if has('iOS')
         " iVim can't run external commands and has integrated ctags as an
         " internal command
         let g:tagbar_ctags_bin = 'ictags'
@@ -2589,7 +2589,7 @@ function! s:EscapeCtagsCmd(ctags_bin, args, ...) abort
         "  character that needs to be escaped for tagbar.vim is <space> for
         "  windows cmd.exe.
         let ctags_cmd = a:ctags_bin
-    elseif has('ivim')
+    elseif has('iOS')
         " ictags is an internal command under iVim and should not be escaped
         let ctags_cmd = a:ctags_bin
     else
@@ -2654,7 +2654,7 @@ endfunction
 " Execute ctags command based on platform
 " allows support for platforms which can't execute system calls
 function! s:ExecuteCmd(ctags_cmd)
-    if has('ivim')
+    if has('iOS')
         let temp_reg = @"
         redir @"
         silent execute a:ctags_cmd
